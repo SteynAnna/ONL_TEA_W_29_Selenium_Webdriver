@@ -1,17 +1,18 @@
-package findingElements;
+package coderslab.examples;
 
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
-
 import static utils.DataFaker.*;
 
-public class ByCSS {
+public class MyFirstJunitTest {
 
-    public static void main(String[] args) {
+    @Test
+    void registerUserTest (){
         System.setProperty("webdriver.chrome.driver",
                 "src/main/resources/drivers/chromedriver");
 
@@ -45,7 +46,7 @@ public class ByCSS {
 
         // Adding CSS code
         WebElement myPersonalInfo = driver.findElement(By.cssSelector("a[title='Information']"));
-        WebElement myAddresses = driver.findElement(By.cssSelector("a[title='Addresses']"));
+        WebElement myAdresses = driver.findElement(By.cssSelector("a[title='Addresses']"));
 
         driver.quit();
     }
