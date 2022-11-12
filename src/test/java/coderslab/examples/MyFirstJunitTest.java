@@ -1,6 +1,8 @@
 package coderslab.examples;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,16 +13,22 @@ import java.time.Duration;
 
 import static utils.DataFaker.*;
 
-public class MyFirstJunitTest {
+class MyFirstJUnitTest {
 
-    @Test
-    void registerUserTest (){
+    WebDriver driver;
+
+    @BeforeEach
+    void setUp() {
         System.setProperty("webdriver.chrome.driver",
                 "src/main/resources/drivers/chromedriver");
 
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+    }
+
+    @Test
+    void registerUserTest() {
         driver.get("https://hotel-testlab.coderslab.pl/en/");
         WebElement signInButton = driver.findElement(By.className("user_login"));
         signInButton.click();
@@ -28,7 +36,6 @@ public class MyFirstJunitTest {
         emailInput.sendKeys(createRandomEmail());
         WebElement createAccountButton = driver.findElement(By.name("SubmitCreate"));
         createAccountButton.submit();
-
 
         // Adding Xpath code
 
@@ -48,11 +55,14 @@ public class MyFirstJunitTest {
 
         // Adding CSS code
         WebElement myPersonalInfo = driver.findElement(By.cssSelector("a[title='Information']"));
-        WebElement myAddresses = driver.findElement(By.cssSelector("a[title='Addresses']"));
+        WebElement myAdresses = driver.findElement(By.cssSelector("a[title='Addresses']"));
 
         Assertions.assertTrue(myPersonalInfo.isDisplayed());
-        Assertions.assertTrue(myAddresses.isDisplayed());
+        Assertions.assertTrue(myAdresses.isDisplayed());
+    }
 
+    @AfterEach
+    void tearDown() {
         driver.quit();
     }
 }
