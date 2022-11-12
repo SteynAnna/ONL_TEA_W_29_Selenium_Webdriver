@@ -1,5 +1,6 @@
 package coderslab.examples;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+
 import static utils.DataFaker.*;
 
 public class MyFirstJunitTest {
@@ -46,7 +48,10 @@ public class MyFirstJunitTest {
 
         // Adding CSS code
         WebElement myPersonalInfo = driver.findElement(By.cssSelector("a[title='Information']"));
-        WebElement myAdresses = driver.findElement(By.cssSelector("a[title='Addresses']"));
+        WebElement myAddresses = driver.findElement(By.cssSelector("a[title='Addresses']"));
+
+        Assertions.assertTrue(myPersonalInfo.isDisplayed());
+        Assertions.assertTrue(myAddresses.isDisplayed());
 
         driver.quit();
     }
