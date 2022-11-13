@@ -27,7 +27,7 @@ public class HotelPageTests {
     void clickToSignIn(){
         hotelPage.pageobjects.HomePage homePage = new HomePage(driver);
         homePage.openPage();
-        homePage.clickToSignIn();
+//        homePage.clickToSignIn();
     }
 
     @AfterEach
